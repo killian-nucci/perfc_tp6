@@ -10,6 +10,7 @@ typedef struct {
     char *next;
     char *prev; 
     int n;
+    int test;
 } Arguments;
 
 /**
@@ -20,11 +21,13 @@ typedef struct {
 void print_help(void) {
     printf("Utilisation : ./build/main [-anspe] [texte]\n"
            "Option :\n"
+           "-h : Affiche la liste des arguments"
            "-a : Trie les mtos dans l'odre lexicographique\n"
            "-n : Trie en fonction du nombre d'occurence d'un mot dans l'odre décroissant"
            "-s : Prend que les mots situé une position après un mot donné"
            "-p : Prend que les mots situé une position avant un mot donné"
-           "-e : Compte le nombre d'occurence d'un groupe de N mots donné");
+           "-e : Compte le nombre d'occurence d'un groupe de N mots donné"
+           "-t : Lance les fonctions de test du programme");
 }
 
 
@@ -41,7 +44,7 @@ Arguments parser(int argc, char *argv[]) {
         .dec=0, .lex=0, .next=0, .prev=0
     };
     char c;
-    while ((c = getopt(argc, argv, "ans:p:e:")) != -1)
+    while ((c = getopt(argc, argv, "ans:p:e:ht")) != -1)
     {
         switch (c)
         {
@@ -63,6 +66,14 @@ Arguments parser(int argc, char *argv[]) {
         
         case 'e':
             args.n = atoi(optarg);
+            break;
+        
+        case 't':
+            args.test = 1;
+            break;
+
+        case 'h':
+            print_help();
             break;
 
         default:
