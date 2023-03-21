@@ -1,5 +1,7 @@
 #include <getopt.h>
 #include "mots.h"
+#include "affichage.h"
+#include "tableau.h"
 
 typedef struct {
     char *texte;
@@ -52,4 +54,5 @@ int main(int argc, char* argv[]) {
     Arguments args = parser(argc, argv);
     Texte texte;
     cree_texte(args.texte, &texte);
+    affiche_texte(texte);
 }

@@ -5,7 +5,7 @@ CC=gcc
 BUILD_DIR=build
 SRC_DIR=src
 INCLUDE=-Iinclude
-CFLAGS=-fdiagnostics-color=always -Wall -pedantic -std=c17 -g
+CFLAGS=-fdiagnostics-color=always -Wall -pedantic -std=c17 -g -g3
 SOURCES=$(wildcard $(SRC_DIR)/*.c)
 OBJECTS=$(SOURCES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
