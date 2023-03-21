@@ -5,6 +5,11 @@
 
 typedef struct {
     char *texte;
+    short lex;
+    short dec;
+    char *next;
+    char *prev; 
+    int n;
 } Arguments;
 
 /**
@@ -13,9 +18,13 @@ typedef struct {
  * 
  */
 void print_help(void) {
-    printf("Utilisation : ./build/main [-v] [texte] [filtre]\n"
+    printf("Utilisation : ./build/main [-anspe] [texte]\n"
            "Option :\n"
-           "-v : Création pdf");
+           "-a : Trie les mtos dans l'odre lexicographique\n"
+           "-n : Trie en fonction du nombre d'occurence d'un mot dans l'odre décroissant"
+           "-s : Prend que les mots situé une position après un mot donné"
+           "-p : Prend que les mots situé une position avant un mot donné"
+           "-e : Compte le nombre d'occurence d'un groupe de N mots donné");
 }
 
 
@@ -28,13 +37,32 @@ void print_help(void) {
  * @return Arguments 
  */
 Arguments parser(int argc, char *argv[]) {
-    Arguments args;
+    Arguments args = {
+        .dec=0, .lex=0, .next=0, .prev=0
+    };
     char c;
-    while ((c = getopt(argc, argv, "v")) != -1)
+    while ((c = getopt(argc, argv, "ans:p:e:")) != -1)
     {
         switch (c)
         {
-        case 'v':
+        case 'a':
+            args.lex = 1;
+            break;
+        
+        case 'n':
+            args.dec = 1;
+            break;
+        
+        case 's':
+            args.next = optarg;
+            break;
+
+        case 'p':
+            args.prev = optarg;
+            break;
+        
+        case 'e':
+            args.n = atoi(optarg);
             break;
 
         default:
@@ -54,5 +82,11 @@ int main(int argc, char* argv[]) {
     Arguments args = parser(argc, argv);
     Texte texte;
     cree_texte(args.texte, &texte);
+    if (args.lex) {
+        tri_lex(texte.liste_mot, texte.nb_mot);
+    }
+    if (args.dec) {
+        tri_occurence(texte.liste_mot, texte.nb_mot);
+    }
     affiche_texte(texte);
 }

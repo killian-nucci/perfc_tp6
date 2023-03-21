@@ -52,7 +52,7 @@ int appartient(Mot liste_mot[], int taille, char* mot) {
 //fonction inspiré du code fournis dans le TP 1 d'algo des arbres
 int insere_tableau(Texte *texte, char* mot, int indice) {
     int i;
-    if ((i = appartient(texte->liste_mot, texte->nb_mot, mot)) > 0) {
+    if ((i = appartient(texte->liste_mot, texte->nb_mot, mot)) >= 0) {
         texte->liste_mot[i].occurence++;
         return 0;
     }
