@@ -116,3 +116,10 @@ int cree_texte(char *nom, Texte *texte) {
     fclose(f);
     return 1;
 }
+
+void libere_texte(Texte texte) {
+    for (int i = 0; i < texte.nb_mot; i++) {
+        free(texte.liste_mot[i].mot);
+    }
+    free(texte.liste_mot);
+}

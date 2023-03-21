@@ -21,13 +21,15 @@ typedef struct {
 void print_help(void) {
     printf("Utilisation : ./build/main [-anspe] [texte]\n"
            "Option :\n"
-           "-h : Affiche la liste des arguments"
+           "-h : Affiche la liste des arguments\n"
            "-a : Trie les mtos dans l'odre lexicographique\n"
-           "-n : Trie en fonction du nombre d'occurence d'un mot dans l'odre décroissant"
-           "-s : Prend que les mots situé une position après un mot donné"
-           "-p : Prend que les mots situé une position avant un mot donné"
-           "-e : Compte le nombre d'occurence d'un groupe de N mots donné"
-           "-t : Lance les fonctions de test du programme");
+           "-n : Trie en fonction du nombre d'occurence d'un mot dans l'odre décroissant\n"
+           "-s : Prend que les mots situé une position après un mot donné\n"
+           "-p : Prend que les mots situé une position avant un mot donné\n"
+           "-e : Compte le nombre d'occurence d'un groupe de N mots donné\n"
+           "-t : Lance les fonctions de test du programme\n"
+           "\n Si vous ne metez pas d'argument après -s -p ou -e, cela resultera sur une erreur");
+           exit(1);
 }
 
 
@@ -41,7 +43,7 @@ void print_help(void) {
  */
 Arguments parser(int argc, char *argv[]) {
     Arguments args = {
-        .dec=0, .lex=0, .next=0, .prev=0
+        .dec=0, .lex=0, .next=0, .prev=0, .test=0,
     };
     char c;
     while ((c = getopt(argc, argv, "ans:p:e:ht")) != -1)
@@ -83,7 +85,7 @@ Arguments parser(int argc, char *argv[]) {
     args.texte = argv[optind];
     if (args.texte == NULL)
     {
-        fprintf(stderr, "Fichier manquant\n");
+        fprintf(stderr, "Argument manquant\n");
         exit(1);
     }
     return args;
@@ -100,4 +102,5 @@ int main(int argc, char* argv[]) {
         tri_occurence(texte.liste_mot, texte.nb_mot);
     }
     affiche_texte(texte);
+    libere_texte(texte);
 }

@@ -41,6 +41,12 @@ On a décider de découper notre projet en 3 parties:
 3. Et la dernière partie permet de d'allouer la liste position qui est la liste de base.
 4. Puis un dernier module qui regroupe tout les fichiers.
 
+## Difficultés rencontré 
+
+- Arguments manquant : -s -p -e
+- Si rien n'est mis après -s -p ou -e, la variable qui est censé contenir le nom du fichier sera vide
+et cela renverra une erreur de manque d'argument.
+
 # Compilation
 
 Pour cet exercice on utilise un make file

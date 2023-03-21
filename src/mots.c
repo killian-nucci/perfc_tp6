@@ -24,32 +24,8 @@ Mot *alloue_mot(char *mot) {
     strtolower(cell_mot->mot, mot);
 
     cell_mot->occurence = 1;
-    cell_mot->position = NULL;
     return cell_mot;
 }
-
-
-Cellule_position *alloue_pos(int i) {
-    Cellule_position *cell = malloc(sizeof(Cellule_position));
-    if (cell) {
-        cell->pos = i;
-        cell->suivant = NULL;
-        return cell;
-    }
-    return NULL;
-}
-
-int insere_pos(Liste_position liste_position, int i) {
-    Cellule_position *cell = alloue_pos(i);
-    if (liste_position == NULL) {
-        liste_position = cell;
-        return 1;
-    }
-    for (;liste_position->suivant; liste_position = liste_position->suivant);
-    liste_position->suivant = cell;
-    return 1;
-}
-
 
 
 int mot_est_correct(char *mot) {
