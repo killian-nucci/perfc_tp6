@@ -94,4 +94,11 @@ int cree_texte(char *nom, Texte *texte);
  * @param texte 
  */
 void libere_texte(Texte texte);
+
+/**
+ * @brief Fonction qui initialise la structure texte
+ * 
+ * @param texte 
+ */
+int init_texte(Texte *texte);
 #endif

@@ -2,6 +2,7 @@
 #include "mots.h"
 #include "affichage.h"
 #include "tableau.h"
+#include "test.h"
 
 typedef struct {
     char *texte;
@@ -93,6 +94,10 @@ Arguments parser(int argc, char *argv[]) {
 
 int main(int argc, char* argv[]) {
     Arguments args = parser(argc, argv);
+    if (args.test) {
+        test();
+        return 0;
+    }
     Texte texte;
     cree_texte(args.texte, &texte);
     if (args.lex) {
