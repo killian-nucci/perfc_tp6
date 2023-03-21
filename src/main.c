@@ -94,7 +94,6 @@ Arguments parser(int argc, char *argv[]) {
 
 int main(int argc, char* argv[]) {
     Arguments args = parser(argc, argv);
-    
     Texte texte;
     cree_texte(args.texte, &texte);
     if (args.lex) {
