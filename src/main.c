@@ -49,8 +49,12 @@ Arguments parser(int argc, char *argv[]) {
     char c;
     while ((c = getopt(argc, argv, "ans:p:e:ht")) != -1)
     {
-        switch (c)
-        {
+        switch (c) {
+
+        case 't':
+            args.test = 1;
+            return args;
+            
         case 'a':
             args.lex = 1;
             break;
@@ -71,9 +75,6 @@ Arguments parser(int argc, char *argv[]) {
             args.n = atoi(optarg);
             break;
         
-        case 't':
-            args.test = 1;
-            break;
 
         case 'h':
             print_help();
@@ -108,4 +109,5 @@ int main(int argc, char* argv[]) {
     }
     affiche_texte(texte);
     libere_texte(texte);
+    return 0;
 }
